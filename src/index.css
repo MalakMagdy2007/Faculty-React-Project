@@ -4,13 +4,18 @@
   padding: 0;
 }
 
-body {
+html, body, #root, .app {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  width: 100vw;
-  min-height: 100vh;
   overflow-x: hidden;
+}
+
+body {
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: #000000; 
+  background-color: #000000;
   color: #0f172a;
 }
+
