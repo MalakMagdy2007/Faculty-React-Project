@@ -14,5 +14,21 @@
   "language": {
     "english": "English",
     "arabic": "Arabic"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Your message has been sent successfully!",
+    "errors": {
+      "name": "Name is required",
+      "email": "Email is required",
+      "invalidEmail": "Please enter a valid email",
+      "phone": "Phone is required",
+      "message": "Message is required"
+    }
   }
 }
