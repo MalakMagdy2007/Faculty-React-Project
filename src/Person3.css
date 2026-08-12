@@ -39,9 +39,27 @@ color: #111827
   border-radius: 10px;
   padding: 0 14px;
   background: #fff;
+  color: #111827;
   font: inherit;
 }
+.p3-card,
+.p3-announcement {
+  color: #111827;
+}
 
+.p3-card h2,
+.p3-announcement h2,
+.p3-details h1,
+.p3-details h2,
+.p3-details h3 {
+  color: #111827;
+}
+
+.p3-card p,
+.p3-announcement p,
+.p3-details p {
+  color: #374151;
+}
 .p3-controls input {
   flex: 1;
 }
