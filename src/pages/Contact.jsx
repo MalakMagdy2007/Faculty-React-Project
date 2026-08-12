@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import "../Person5.css";
 
 function Contact() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,21 +35,21 @@ function Contact() {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = t("contact.errors.name");
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("contact.errors.email");
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t("contact.errors.invalidEmail");
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone is required";
+      newErrors.phone = t("contact.errors.phone");
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
+      newErrors.message = t("contact.errors.message");
     }
 
     return newErrors;
@@ -63,7 +67,7 @@ function Contact() {
     }
 
     setErrors({});
-    setSuccess("Your message has been sent successfully!");
+    setSuccess(t("contact.success"));
 
     setFormData({
       name: "",
@@ -76,11 +80,11 @@ function Contact() {
   return (
     <section className="contact-page">
       <div className="container">
-        <h1>Contact Us</h1>
+        <h1>{t("contact.title")}</h1>
 
         <form onSubmit={handleSubmit} className="contact-form">
           <div>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">{t("contact.name")}</label>
 
             <input
               type="text"
@@ -94,7 +98,7 @@ function Contact() {
           </div>
 
           <div>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t("contact.email")}</label>
 
             <input
               type="email"
@@ -108,7 +112,7 @@ function Contact() {
           </div>
 
           <div>
-            <label htmlFor="phone">Phone</label>
+            <label htmlFor="phone">{t("contact.phone")}</label>
 
             <input
               type="tel"
@@ -122,7 +126,7 @@ function Contact() {
           </div>
 
           <div>
-            <label htmlFor="message">Message</label>
+            <label htmlFor="message">{t("contact.message")}</label>
 
             <textarea
               id="message"
@@ -135,7 +139,7 @@ function Contact() {
             {errors.message && <p>{errors.message}</p>}
           </div>
 
-          <button type="submit">Send Message</button>
+          <button type="submit">{t("contact.send")}</button>
 
           {success && <p>{success}</p>}
         </form>
@@ -145,4 +149,3 @@ function Contact() {
 }
 
 export default Contact;
-import "../Person5.css";
