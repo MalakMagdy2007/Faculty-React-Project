@@ -1,0 +1,18 @@
+{
+  "home": {
+    "title": "Home Page",
+    "welcome": "Welcome to our website"
+  },
+  "about": {
+    "title": "About Page",
+    "description": "This is the about page"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "description": "The page you are looking for does not exist."
+  },
+  "language": {
+    "english": "English",
+    "arabic": "Arabic"
+  }
+}
