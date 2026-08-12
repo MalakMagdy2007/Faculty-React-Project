@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { servicesData } from '../data/services';
 import { GraduationCap, Headphones, ExternalLink } from 'lucide-react';
