@@ -1,9 +1,12 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { newsData } from "./newsData";
 import "./Person3.css";
 
 export default function NewsPage() {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
 
@@ -33,12 +36,12 @@ export default function NewsPage() {
   return (
     <main className="p3-page">
       <section className="p3-header">
-        <span className="p3-label">Latest Updates</span>
+        <span className="p3-label">{isArabic ? "آخر التحديثات" : "Latest Updates"}</span>
 
-        <h1>News</h1>
+        <h1>{isArabic ? "الأخبار" : "News"}</h1>
 
         <p>
-          Latest news and activities from the Faculty.
+          {isArabic ? "أحدث الأخبار والأنشطة من الكلية." : "Latest news and activities from the Faculty."}
         </p>
       </section>
 
@@ -50,18 +53,18 @@ export default function NewsPage() {
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search news..."
-          aria-label="Search news"
+          placeholder={isArabic ? "ابحث في الأخبار..." : "Search news..."}
+          aria-label={isArabic ? "البحث في الأخبار" : "Search news"}
         />
 
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          aria-label="Filter news by category"
+          aria-label={isArabic ? "تصفية الأخبار حسب الفئة" : "Filter news by category"}
         >
           {categories.map((item) => (
             <option key={item} value={item}>
-              {item}
+              {isArabic ? (item === "All" ? "الكل" : item) : item}
             </option>
           ))}
         </select>
@@ -69,7 +72,7 @@ export default function NewsPage() {
 
       {filteredNews.length === 0 ? (
         <div className="p3-empty">
-          No news available.
+          {isArabic ? "لا توجد أخبار متاحة." : "No news available."}
         </div>
       ) : (
         <section className="p3-grid">
@@ -78,7 +81,7 @@ export default function NewsPage() {
               <div className="p3-card-image">
                 <img
                   src={item.image}
-                  alt={item.titleEn}
+                  alt={isArabic ? item.titleAr : item.titleEn}
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
@@ -94,15 +97,15 @@ export default function NewsPage() {
                   </time>
                 </div>
 
-                <h2>{item.titleEn}</h2>
+                <h2>{isArabic ? item.titleAr : item.titleEn}</h2>
 
-                <p>{item.excerptEn}</p>
+                <p>{isArabic ? item.excerptAr : item.excerptEn}</p>
 
                 <Link
                   to={`/news/${item.id}`}
                   className="p3-button"
                 >
-                  Read More
+                  {isArabic ? "اقرأ المزيد" : "Read More"}
                 </Link>
               </div>
             </article>

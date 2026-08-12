@@ -1,8 +1,11 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { announcementsData } from "./newsData";
 import "./Person3.css";
 
 export default function AnnouncementsPage() {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
 
@@ -32,12 +35,12 @@ export default function AnnouncementsPage() {
   return (
     <main className="p3-page">
       <section className="p3-header">
-        <span className="p3-label">Important Information</span>
+        <span className="p3-label">{isArabic ? "معلومات مهمة" : "Important Information"}</span>
 
-        <h1>Announcements</h1>
+        <h1>{isArabic ? "الإعلانات" : "Announcements"}</h1>
 
         <p>
-          Important notices and updates for students and visitors.
+          {isArabic ? "إشعارات وتحديثات مهمة للطلاب والزوار." : "Important notices and updates for students and visitors."}
         </p>
       </section>
 
@@ -49,18 +52,18 @@ export default function AnnouncementsPage() {
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search announcements..."
-          aria-label="Search announcements"
+          placeholder={isArabic ? "ابحث في الإعلانات..." : "Search announcements..."}
+          aria-label={isArabic ? "البحث في الإعلانات" : "Search announcements"}
         />
 
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          aria-label="Filter announcements by category"
+          aria-label={isArabic ? "تصفية الإعلانات حسب الفئة" : "Filter announcements by category"}
         >
           {categories.map((item) => (
             <option key={item} value={item}>
-              {item}
+              {isArabic ? (item === "All" ? "الكل" : item) : item}
             </option>
           ))}
         </select>
@@ -68,7 +71,7 @@ export default function AnnouncementsPage() {
 
       {filteredAnnouncements.length === 0 ? (
         <div className="p3-empty">
-          No announcements available.
+          {isArabic ? "لا توجد إعلانات متاحة." : "No announcements available."}
         </div>
       ) : (
         <section className="p3-announcements">
@@ -87,13 +90,9 @@ export default function AnnouncementsPage() {
                   <span>{item.category}</span>
                 </div>
 
-                <h2>{item.titleEn}</h2>
+                <h2>{isArabic ? item.titleAr : item.titleEn}</h2>
 
-                <p>{item.contentEn}</p>
-
-                <p dir="rtl" lang="ar">
-                  {item.titleAr} — {item.contentAr}
-                </p>
+                <p>{isArabic ? item.contentAr : item.contentEn}</p>
               </div>
             </article>
           ))}
