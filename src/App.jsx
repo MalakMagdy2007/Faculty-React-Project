@@ -1,10 +1,12 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import NewsCard from './components/NewsCard';
-import Statistics from './components/Statistics';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
+import { FacultyPage } from "./pages/FacultyPage";
+import { FacultyDetailPage } from "./pages/FacultyDetailPage";
+import { ServicesPage } from "./pages/ServicesPage";
 
 import newsImg1 from './assets/students.jpg'; 
 import newsImg2 from './assets/ai_workshop.jpg'; 
@@ -12,37 +14,27 @@ import newsImg3 from './assets/graduation_project_guidelines.jpg';
 
 function App() {
   return (
-    <div className="app">
-      <Navbar />
-      <Hero />
-      <Statistics />
-      <section className="news-section" style={{ padding: '50px 20px', textAlign: 'center' }}>
-        <h2 style={{ color: '#0f172a', marginBottom: '30px', fontSize: '2rem' }}>Latest News & Announcements</h2>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap' }}>
-          <NewsCard 
-            image={newsImg1}
-            title="Start of Registration" 
-            date="August 10, 2026" 
-            description="Registration for the new academic semester is now officially open for all computer science students." 
-          />
-          <NewsCard 
-            image={newsImg2}
-            title="AI Workshop Announcement" 
-            date="August 15, 2026" 
-            description="Join our upcoming hands-on artificial intelligence and machine learning workshop at the main lab." 
-          />
-          <NewsCard 
-            image={newsImg3}
-            title="Graduation Project Guidelines" 
-            date="August 20, 2026" 
-            description="Important updates regarding the submission deadlines and graduation project requirements have been posted." 
-          />
-        </div>
-      </section>
+    <BrowserRouter>
+      <LanguageSwitcher />
 
-      
-      <Footer />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+
+        <Route path="/faculty" element={<FacultyPage />} />
+        <Route path="/faculty/:id" element={<FacultyDetailPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/news/:id" element={<NewsDetails />} />
+        <Route path="/announcements" element={<AnnouncementsPage />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
