@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { newsData } from "../data/newsData";
+import { newsData } from "./newsData";
 import "./Person3.css";
 
 export default function NewsPage() {

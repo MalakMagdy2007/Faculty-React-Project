@@ -8,6 +8,13 @@ import { FacultyPage } from "./pages/FacultyPage";
 import { FacultyDetailPage } from "./pages/FacultyDetailPage";
 import { ServicesPage } from "./pages/ServicesPage";
 
+import Events from "./pages/Events";
+import Contact from "./pages/Contact";
+
+import NewsPage from "./NewsPage";
+import NewsDetails from "./NewsDetails";
+import AnnouncementsPage from "./AnnouncementsPage";
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +27,13 @@ function App() {
         <Route path="/faculty" element={<FacultyPage />} />
         <Route path="/faculty/:id" element={<FacultyDetailPage />} />
         <Route path="/services" element={<ServicesPage />} />
+
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/news/:id" element={<NewsDetails />} />
+        <Route path="/announcements" element={<AnnouncementsPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

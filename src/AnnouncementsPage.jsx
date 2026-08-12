@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { announcementsData } from "../data/newsData";
+import { announcementsData } from "./newsData";
 import "./Person3.css";
 
 export default function AnnouncementsPage() {
