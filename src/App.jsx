@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
-import LanguageSwitcher from "./components/LanguageSwitcher";
+import Navbar from './components/Navbar';
+
 
 import { FacultyPage } from "./pages/FacultyPage";
 import { FacultyDetailPage } from "./pages/FacultyDetailPage";
@@ -21,7 +22,7 @@ import AnnouncementsPage from "./AnnouncementsPage";
 function App() {
   return (
     <BrowserRouter>
-      <LanguageSwitcher />
+    <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
