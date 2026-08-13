@@ -12,7 +12,6 @@ export default function FacultyPage() {
             title: 'Dean - Professor of CS',
             email: 'a.mahmoud@fci.edu.eg',
             office: 'Building A - Room 302',
-            // صورة أستاذ جامعي (رجل)
             image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
             dept: 'CS'
         },
@@ -22,7 +21,6 @@ export default function FacultyPage() {
             title: 'Associate Professor - IS',
             email: 's.ali@fci.edu.eg',
             office: 'Building B - Room 105',
-            // صورة أستاذة جامعية (سيدة)
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
             dept: 'IS'
         }
