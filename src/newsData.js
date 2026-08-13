@@ -4,7 +4,7 @@ export const newsData = [
     type: "news",
     category: "Academic",
     date: "2026-08-05",
-    image: "/news-ai-workshop.jpg",
+    image: "https://picsum.photos/seed/ai-workshop/800/450",
     titleEn: "Faculty Organizes Artificial Intelligence Workshop",
     titleAr: "الكلية تنظم ورشة عمل عن الذكاء الاصطناعي",
     excerptEn:
@@ -21,7 +21,7 @@ export const newsData = [
     type: "news",
     category: "Students",
     date: "2026-07-28",
-    image: "/news-student-projects.jpg",
+    image: "https://picsum.photos/seed/student-projects/800/450",
     titleEn: "Student Projects Exhibition Held at the Faculty",
     titleAr: "إقامة معرض لمشروعات الطلاب بالكلية",
     excerptEn:
@@ -38,7 +38,7 @@ export const newsData = [
     type: "news",
     category: "Training",
     date: "2026-07-20",
-    image: "/news-training.jpg",
+    image: "https://picsum.photos/seed/summer-training/800/450",
     titleEn: "Summer Training Program Announced",
     titleAr: "الإعلان عن برنامج التدريب الصيفي",
     excerptEn:
@@ -55,7 +55,7 @@ export const newsData = [
     type: "news",
     category: "Research",
     date: "2026-07-12",
-    image: "/news-research.jpg",
+    image: "https://picsum.photos/seed/research-seminar/800/450",
     titleEn: "Research Seminar on Modern Computing",
     titleAr: "ندوة بحثية حول الحوسبة الحديثة",
     excerptEn:
