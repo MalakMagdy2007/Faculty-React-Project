@@ -11,6 +11,12 @@ import { ServicesPage } from "./pages/ServicesPage";
 import newsImg1 from './assets/students.jpg'; 
 import newsImg2 from './assets/ai_workshop.jpg'; 
 import newsImg3 from './assets/graduation_project_guidelines.jpg';
+import Events from "./pages/Events";
+import Contact from "./pages/Contact";
+import NewsPage from "./NewsPage";
+import NewsDetails from "./NewsDetails";
+import AnnouncementsPage from "./AnnouncementsPage";
+
 
 function App() {
   return (
