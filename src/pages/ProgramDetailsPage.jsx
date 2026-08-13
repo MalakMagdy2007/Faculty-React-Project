@@ -6,9 +6,11 @@ import { programsData } from '../data/programs';
 const ProgramDetailsPage = () => {
     const { id } = useParams();
     const { i18n } = useTranslation();
-    const currentLang = i18n.language || 'ar';
+    // التأكد من اللغة الحالية مع تعيين "ar" كافتراضي
+    const currentLang = i18n?.language?.startsWith('en') ? 'en' : 'ar';
 
-    const program = programsData.find((p) => p.id === id);
+    // استخدام String(p.id) للتحقق المضمون بغض النظر عن نوع الـ ID (Number أو String)
+    const program = programsData?.find((p) => String(p.id) === String(id));
 
     const labels = {
         notFound: { ar: "البرنامج غير موجود!", en: "Program not found!" },
@@ -19,9 +21,10 @@ const ProgramDetailsPage = () => {
 
     if (!program) {
         return (
-            <div style={{ textAlign: 'center', padding: '60px 20px', fontFamily: 'sans-serif' }}>
+            <div style={{ textAlign: 'center', padding: '60px 20px', color: '#fff', fontFamily: 'sans-serif' }}>
                 <h2>{labels.notFound[currentLang]}</h2>
-                <Link to="/programs" style={{ color: '#0284c7', textDecoration: 'underline' }}>
+                <br />
+                <Link to="/programs" style={{ color: '#38bdf8', textDecoration: 'underline' }}>
                     {labels.backBtn[currentLang]}
                 </Link>
             </div>
@@ -48,11 +51,11 @@ const ProgramDetailsPage = () => {
                     fontWeight: 'bold',
                     marginBottom: '15px'
                 }}>
-                    {program.type[currentLang]}
+                    {program.type?.[currentLang] || program.type}
                 </span>
 
                 <h1 style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '15px' }}>
-                    {program.name[currentLang]}
+                    {program.name?.[currentLang] || program.name}
                 </h1>
 
                 <div style={{ backgroundColor: '#f8fafc', padding: '15px', borderRadius: '8px', marginBottom: '25px', display: 'inline-block' }}>
@@ -60,19 +63,19 @@ const ProgramDetailsPage = () => {
                         📌 {labels.durationTitle[currentLang]}:
                     </span>
                     <span style={{ color: '#0369a1', fontWeight: 'bold', margin: '0 8px' }}>
-                        {program.duration[currentLang]}
+                        {program.duration?.[currentLang] || program.duration}
                     </span>
                 </div>
 
                 <p style={{ fontSize: '1.1rem', color: '#334155', lineHeight: '1.7', marginBottom: '30px' }}>
-                    {program.description[currentLang]}
+                    {program.description?.[currentLang] || program.description}
                 </p>
 
                 {/* Admission Requirements */}
                 <div style={{ borderTop: '2px solid #f1f5f9', paddingTop: '20px' }}>
                     <h3 style={{ color: '#1e293b', marginBottom: '15px' }}>{labels.reqTitle[currentLang]}</h3>
                     <ul style={{ paddingRight: currentLang === 'ar' ? '20px' : '0', paddingLeft: currentLang === 'en' ? '20px' : '0' }}>
-                        {program.requirements[currentLang].map((req, idx) => (
+                        {(program.requirements?.[currentLang] || program.requirements || []).map((req, idx) => (
                             <li key={idx} style={{ marginBottom: '10px', color: '#475569', fontSize: '1.05rem' }}>
                                 {req}
                             </li>
