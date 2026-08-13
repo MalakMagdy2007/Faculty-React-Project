@@ -133,3 +133,89 @@
     font-size: 13px !important;
   }
 }
+/* إزالة الخطوط التحتية من كل اللينكات وجعل مظهرها نظيف */
+.nav-item {
+    color: #334155 !important;
+    text-decoration: none !important; /* دي اللي بتشيل الخط من تحت الكلمات */
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 5px 8px;
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+    color: #0284c7 !important;
+    text-decoration: none !important;
+}
+
+/* تنسيق الـ Container عشان يجيب اللينكات وزرار Contact Us في اليمين مظبوط */
+.nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    background-color: #ffffff;
+}
+
+.nav-brand {
+    margin-right: auto; /* بيلزق اللوجو في الشمال ويوسع الباقي للجين */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* زرار Contact Us الأزرق اللي كان ناقص على اليمين */
+.contact-btn {
+    background-color: #2563eb;
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 20px; 
+}
+
+.contact-btn:hover {
+    background-color: #1d4ed8;
+}.main-navbar, .navbar-wrapper {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center; 
+    text-decoration: none;
+    gap: 12px; 
+}
+
+.logo-img {
+    height: 45px; 
+    width: auto;  
+    object-fit: contain;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.brand-text span {
+    font-size: 0.85rem;
+    color: #0284c7;
+    margin-top: -2px;
+}

@@ -1,56 +1,56 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Base & Components
-import Home from "./pages/Home";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
-import LanguageSwitcher from "./components/LanguageSwitcher";
+// Components
+import Navbar from './components/Navbar';
 
-// Person 2 Pages (Departments & Programs)
+// Pages
+import Home from "./pages/Home";
+import AboutPage from "./pages/AboutPage";
 import DepartmentsPage from "./pages/DepartmentsPage";
 import DepartmentDetailsPage from "./pages/DepartmentDetailsPage";
 import ProgramsPage from "./pages/ProgramsPage";
 import ProgramDetailsPage from "./pages/ProgramDetailsPage";
-
-// Person 4 Pages (Faculty & Services)
-import { FacultyPage } from "./pages/FacultyPage";
-import { FacultyDetailPage } from "./pages/FacultyDetailPage";
-import { ServicesPage } from "./pages/ServicesPage";
-
-// Person 5 Pages (Events & Contact)
+import FacultyPage from "./pages/FacultyPage";
+import FacultyDetailPage from "./pages/FacultyDetailPage";
+import ServicesPage from "./pages/ServicesPage";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
-function App() {
+// News & Announcements Pages
+import NewsPage from "./pages/NewsPage";
+import NewsDetails from "./pages/NewsDetails";
+import AnnouncementsPage from "./pages/AnnouncementsPage";
+
+export default function App() {
     return (
         <BrowserRouter>
-            <LanguageSwitcher />
-
+            <Navbar />
             <Routes>
-                {/* Main Routes */}
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/about" element={<AboutPage />} />
 
-                {/* Person 2: Departments & Programs */}
                 <Route path="/departments" element={<DepartmentsPage />} />
                 <Route path="/departments/:id" element={<DepartmentDetailsPage />} />
+
                 <Route path="/programs" element={<ProgramsPage />} />
                 <Route path="/programs/:id" element={<ProgramDetailsPage />} />
 
-                {/* Person 4: Faculty & Services */}
                 <Route path="/faculty" element={<FacultyPage />} />
                 <Route path="/faculty/:id" element={<FacultyDetailPage />} />
                 <Route path="/services" element={<ServicesPage />} />
 
-                {/* Person 5: Events & Contact */}
                 <Route path="/events" element={<Events />} />
                 <Route path="/contact" element={<Contact />} />
 
-                {/* 404 Route */}
+                {/* مسارات الأخبار والإعلانات التي تم إضافتها */}
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/news/:id" element={<NewsDetails />} />
+                <Route path="/announcements" element={<AnnouncementsPage />} />
+
+                {/* صفحة 404 */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );
 }
-
-export default App;
