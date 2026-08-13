@@ -1,103 +1,74 @@
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { announcementsData } from "./newsData";
-import "./Person3.css";
+import React, { useState, useMemo } from "react";
+import { announcementsData } from "../data/newsData";
 
 export default function AnnouncementsPage() {
-  const { i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("All");
 
-  const categories = [
-    "All",
-    ...new Set(announcementsData.map((item) => item.category)),
-  ];
+    const categories = ["All", ...new Set(announcementsData.map((item) => item.category))];
 
-  const filteredAnnouncements = useMemo(() => {
-    const query = search.trim().toLowerCase();
+    const filteredAnnouncements = useMemo(() => {
+        const query = search.trim().toLowerCase();
+        return announcementsData.filter((item) => {
+            const matchesCategory = category === "All" || item.category === category;
+            const matchesSearch =
+                !query ||
+                item.titleEn.toLowerCase().includes(query) ||
+                item.contentEn.toLowerCase().includes(query);
+            return matchesCategory && matchesSearch;
+        });
+    }, [search, category]);
 
-    return announcementsData.filter((item) => {
-      const matchesCategory =
-        category === "All" || item.category === category;
+    return (
+        <main style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 20px', fontFamily: 'sans-serif' }}>
+            <section style={{ textAlign: 'center', marginBottom: '30px' }}>
+                <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 'bold', textTransform: 'uppercase' }}>Important Information</span>
+                <h1 style={{ fontSize: '2.2rem', color: '#0f172a', margin: '10px 0' }}>Announcements</h1>
+                <p style={{ color: '#475569' }}>Important notices and updates for students and visitors.</p>
+            </section>
 
-      const matchesSearch =
-        !query ||
-        item.titleEn.toLowerCase().includes(query) ||
-        item.titleAr.includes(search.trim()) ||
-        item.contentEn.toLowerCase().includes(query) ||
-        item.contentAr.includes(search.trim());
+            <section style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginBottom: '35px', flexWrap: 'wrap' }}>
+                <input
+                    type="search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search announcements..."
+                    style={{ padding: '10px 16px', borderRadius: '8px', border: '1px solid #cbd5e1', width: '300px', outline: 'none' }}
+                />
+                <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    style={{ padding: '10px 16px', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none', backgroundColor: '#fff' }}
+                >
+                    {categories.map((item) => (
+                        <option key={item} value={item}>
+                            {item === "All" ? "All Categories" : item}
+                        </option>
+                    ))}
+                </select>
+            </section>
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [search, category]);
-
-  return (
-    <main className="p3-page">
-      <section className="p3-header">
-        <span className="p3-label">{isArabic ? "معلومات مهمة" : "Important Information"}</span>
-
-        <h1>{isArabic ? "الإعلانات" : "Announcements"}</h1>
-
-        <p>
-          {isArabic ? "إشعارات وتحديثات مهمة للطلاب والزوار." : "Important notices and updates for students and visitors."}
-        </p>
-      </section>
-
-      <section
-        className="p3-controls"
-        aria-label="Announcements search and filtering"
-      >
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder={isArabic ? "ابحث في الإعلانات..." : "Search announcements..."}
-          aria-label={isArabic ? "البحث في الإعلانات" : "Search announcements"}
-        />
-
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          aria-label={isArabic ? "تصفية الإعلانات حسب الفئة" : "Filter announcements by category"}
-        >
-          {categories.map((item) => (
-            <option key={item} value={item}>
-              {isArabic ? (item === "All" ? "الكل" : item) : item}
-            </option>
-          ))}
-        </select>
-      </section>
-
-      {filteredAnnouncements.length === 0 ? (
-        <div className="p3-empty">
-          {isArabic ? "لا توجد إعلانات متاحة." : "No announcements available."}
-        </div>
-      ) : (
-        <section className="p3-announcements">
-          {filteredAnnouncements.map((item) => (
-            <article
-              className="p3-announcement"
-              key={item.id}
-            >
-              <div className="p3-announcement-date">
-                <span>{item.date.slice(8)}</span>
-                <small>{item.date.slice(0, 7)}</small>
-              </div>
-
-              <div>
-                <div className="p3-meta">
-                  <span>{item.category}</span>
+            {filteredAnnouncements.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '50px', border: '1px dashed #cbd5e1', borderRadius: '12px' }}>
+                    No announcements available.
                 </div>
-
-                <h2>{isArabic ? item.titleAr : item.titleEn}</h2>
-
-                <p>{isArabic ? item.contentAr : item.contentEn}</p>
-              </div>
-            </article>
-          ))}
-        </section>
-      )}
-    </main>
-  );
+            ) : (
+                <section style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    {filteredAnnouncements.map((item) => (
+                        <article key={item.id} style={{ display: 'flex', gap: '20px', backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px', alignItems: 'center' }}>
+                            <div style={{ minWidth: '80px', height: '80px', backgroundColor: '#f1f5f9', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#1e293b' }}>
+                                <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{item.date.slice(8)}</span>
+                                <small style={{ fontSize: '0.75rem', color: '#64748b' }}>{item.date.slice(0, 7)}</small>
+                            </div>
+                            <div>
+                                <span style={{ fontSize: '0.8rem', backgroundColor: '#e2e8f0', color: '#334155', padding: '2px 8px', borderRadius: '4px' }}>{item.category}</span>
+                                <h2 style={{ fontSize: '1.2rem', color: '#0f172a', margin: '6px 0' }}>{item.titleEn}</h2>
+                                <p style={{ color: '#475569', fontSize: '0.95rem', margin: 0 }}>{item.contentEn}</p>
+                            </div>
+                        </article>
+                    ))}
+                </section>
+            )}
+        </main>
+    );
 }

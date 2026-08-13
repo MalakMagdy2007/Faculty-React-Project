@@ -12,8 +12,8 @@ export default function FacultyPage() {
             title: 'Dean - Professor of CS',
             email: 'a.mahmoud@fci.edu.eg',
             office: 'Building A - Room 302',
-            // صورة رجل أكاديمي
-            image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500&auto=format&fit=crop',
+            // صورة أستاذ جامعي (رجل)
+            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
             dept: 'CS'
         },
         {
@@ -22,8 +22,8 @@ export default function FacultyPage() {
             title: 'Associate Professor - IS',
             email: 's.ali@fci.edu.eg',
             office: 'Building B - Room 105',
-            // صورة أستاذة جامعية دكتورة
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=500&auto=format&fit=crop',
+            // صورة أستاذة جامعية (سيدة)
+            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
             dept: 'IS'
         }
     ];
@@ -94,11 +94,13 @@ export default function FacultyPage() {
                             display: 'flex',
                             flexDirection: 'column'
                         }}>
-                            <img
-                                src={member.image}
-                                alt={member.name}
-                                style={{ width: '100%', height: '240px', objectFit: 'cover' }}
-                            />
+                            <div style={{ width: '100%', height: '260px', overflow: 'hidden', backgroundColor: '#e2e8f0' }}>
+                                <img
+                                    src={member.image}
+                                    alt={member.name}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                />
+                            </div>
                             <div style={{ padding: '25px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                                 <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '6px' }}>
                                     {member.name}

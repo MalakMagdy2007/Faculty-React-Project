@@ -1,73 +1,46 @@
+import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { newsData } from "./newsData";
-import "./Person3.css";
+import { newsData } from "../data/newsData";
 
 export default function NewsDetails() {
-  const { id } = useParams();
+    const { id } = useParams();
+    const news = newsData.find((item) => item.id === id);
 
-  const news = newsData.find((item) => item.id === id);
+    if (!news) {
+        return (
+            <main style={{ padding: '50px', textAlign: 'center', fontFamily: 'sans-serif' }}>
+                <h1>News Article Not Found</h1>
+                <Link to="/news" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 'bold' }}>
+                    ← Back to News
+                </Link>
+            </main>
+        );
+    }
 
-  if (!news) {
     return (
-      <main className="p3-page">
-        <div className="p3-empty">
-          <h1>News Not Found</h1>
+        <main style={{ maxWidth: '800px', margin: '40px auto', padding: '20px', fontFamily: 'sans-serif' }}>
+            <Link to="/news" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 'bold', display: 'inline-block', marginBottom: '20px' }}>
+                ← Back to News
+            </Link>
 
-          <p>
-            The requested news article does not exist.
-          </p>
+            <article style={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '30px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', fontSize: '0.9rem', marginBottom: '15px' }}>
+                    <span>{news.category}</span>
+                    <time>{news.date}</time>
+                </div>
 
-          <Link to="/news" className="p3-button">
-            Back to News
-          </Link>
-        </div>
-      </main>
+                <h1 style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '20px', lineHeight: '1.3' }}>{news.titleEn}</h1>
+
+                <p style={{ fontSize: '1.1rem', fontWeight: '600', color: '#334155', lineHeight: '1.7', marginBottom: '20px' }}>
+                    {news.excerptEn}
+                </p>
+
+                <hr style={{ border: 'none', borderTop: '1px solid #f1f5f9', margin: '20px 0' }} />
+
+                <p style={{ fontSize: '1rem', color: '#475569', lineHeight: '1.8' }}>
+                    {news.contentEn}
+                </p>
+            </article>
+        </main>
     );
-  }
-
-  return (
-    <main className="p3-page">
-      <article className="p3-details">
-
-        <Link to="/news" className="p3-back">
-          ← Back to News
-        </Link>
-
-        <div className="p3-details-meta">
-          <span>{news.category}</span>
-
-          <time dateTime={news.date}>
-            {news.date}
-          </time>
-        </div>
-
-        <h1>{news.titleEn}</h1>
-
-        <div className="p3-details-image">
-          <img
-            src={news.image}
-            alt={news.titleEn}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
-        </div>
-
-        <p className="p3-details-excerpt">
-          {news.excerptEn}
-        </p>
-
-        <p>{news.contentEn}</p>
-
-        <hr />
-
-        <h2>العربية</h2>
-
-        <h3>{news.titleAr}</h3>
-
-        <p>{news.contentAr}</p>
-
-      </article>
-    </main>
-  );
 }

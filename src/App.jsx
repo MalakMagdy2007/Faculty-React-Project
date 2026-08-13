@@ -17,6 +17,11 @@ import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// News & Announcements Pages
+import NewsPage from "./pages/NewsPage";
+import NewsDetails from "./pages/NewsDetails";
+import AnnouncementsPage from "./pages/AnnouncementsPage";
+
 export default function App() {
     return (
         <BrowserRouter>
@@ -38,6 +43,12 @@ export default function App() {
                 <Route path="/events" element={<Events />} />
                 <Route path="/contact" element={<Contact />} />
 
+                {/* مسارات الأخبار والإعلانات التي تم إضافتها */}
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/news/:id" element={<NewsDetails />} />
+                <Route path="/announcements" element={<AnnouncementsPage />} />
+
+                {/* صفحة 404 */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

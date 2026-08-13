@@ -1,14 +1,11 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
-import { Link } from 'react-router-dom'; // استدعاء مكون التنقل
+import { Link } from 'react-router-dom';
 import './Home.css';
 import Statistics from '../components/Statistics';
 import NewsCard from '../components/NewsCard';
 import Footer from '../components/Footer';
 
 function Home() {
-    const { t } = useTranslation();
-
     return (
         <div className="home-container">
             <div className="hero-section">
@@ -20,7 +17,6 @@ function Home() {
                     <p>Empowering the Next Generation of Tech & AI Leaders</p>
 
                     <div className="hero-buttons">
-                        {/* ربط زراير الصفحة الرئيسية بالصفحات الصح */}
                         <Link to="/programs" className="btn-primary">
                             Explore Programs
                         </Link>
